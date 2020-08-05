@@ -11,6 +11,8 @@ Description: Automatic reporting based on FactoMineR and
     officer. The input is an object of type MCA and the output is a pptx
     file.
 License: GPL-3
+URL: https://github.com/Sebastien-Le/YesSiR
+BugReports: https://github.com/Sebastien-Le/YesSiR/issues
 Imports: 
     FactoMineR,
     flextable,
