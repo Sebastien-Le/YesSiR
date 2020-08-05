@@ -49,7 +49,7 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
 
   #######################################
   # Graphical representation
-  yes_plot.resp1 <- FactoMiner::plot.MCA(res,choix="ind",invisible=c("var","quali.sup"),label = "none",title = "Representation of the respondents",axes=c(x1,x2))
+  yes_plot.resp1 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","quali.sup"),label = "none",title = "Representation of the respondents",axes=c(x1,x2))
 
   #Slide: individuals graph
   essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")

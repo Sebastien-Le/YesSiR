@@ -7,9 +7,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "sebastien.le@agrocampus-ouets.fr",
            comment = c(ORCID = "0000-0001-8814-6714"))
-Description: Automatic reporting based on FactoMineR and officer
+Description: Automatic reporting based on FactoMineR and
+    officer
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
+Imports: 
+    FactoMineR,
+    flextable,
+    officer
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
