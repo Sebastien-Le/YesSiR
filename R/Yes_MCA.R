@@ -608,6 +608,6 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
       }
     }
   }
-  officer::print.rpptx(essai, target = "results.pptx")
+  print(essai, target = "results.pptx")
 
 }#End function
