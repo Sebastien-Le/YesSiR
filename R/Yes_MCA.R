@@ -23,8 +23,8 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   yes_slide_num=0
   essai <- read_pptx(yes_temp)
   essai <- remove_slide(essai)
-  essai <- add_slide(essai, layout = "Diapositive de titre", master = "Intégral")
-  essai <- ph_with(essai, value = yes_study_name, location = ph_location_type(type = "ctrTitle"))
+  essai <- officer::add_slide(essai, layout = "Diapositive de titre", master = "Intégral")
+  essai <- officer::ph_with(essai, value = yes_study_name, location = ph_location_type(type = "ctrTitle"))
   #######################################
 
 
@@ -35,58 +35,58 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   yes_eig <- round(yes_eig,4)
   yes_eig <- cbind(rownames(yes_eig),yes_eig)
   colnames(yes_eig) <- c("Dimension","Eigenvalue","Percentage of variance","Cumulative percentage of variance")
-  ft <- flextable(yes_eig)
-  ft <- autofit(ft)
+  ft <- flextable::flextable(yes_eig)
+  ft <- flextable::autofit(ft)
 
   #Eigevanlues slide
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Eigenvalues Decomposition", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Eigenvalues Decomposition", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
   #######################################
   # Graphical representation
-  yes_plot.resp1 <- plot.MCA(res,choix="ind",invisible=c("var","quali.sup"),label = "none",title = "Representation of the respondents",axes=c(x1,x2))
+  yes_plot.resp1 <- FactoMiner::plot.MCA(res,choix="ind",invisible=c("var","quali.sup"),label = "none",title = "Representation of the respondents",axes=c(x1,x2))
 
   #Slide: individuals graph
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the respondents", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp1, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the respondents", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp1, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
   #######################################
   # Graphical representation: x1, x2
-  yes_plot.resp2 <- plot.MCA(res,choix="ind",invisible=c("ind","quali.sup"),
+  yes_plot.resp2 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("ind","quali.sup"),
                              label = "var",title = "Representation of the most contributive answers",axes=c(x1,x2),
                              selectMod = "contrib 15")
 
   #Slide: most contributive categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the most contributive answers", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp2, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the most contributive answers", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp2, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
   #######################################
   # Graphical representation: x1, x2
-  yes_plot.resp3 <- plot.MCA(res,choix="ind",invisible=c("quali.sup"),label = "var",
+  yes_plot.resp3 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup"),label = "var",
                              title = "Representation of the respondents and the most contributive answers",axes=c(x1,x2),
                              select = "contrib 0", selectMod = "contrib 15")
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the respondents and the most contributive answers", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp3, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the respondents and the most contributive answers", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp3, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -97,21 +97,21 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_act <- unique(c(sel_act_x1_p,sel_act_x1_n))
 
   if (is.null(sel_act)==TRUE){
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
                                title = paste("No active answers are significant at a significant level of",thres_x1),
                                axes=c(x1,x2), select="contrib 0 ", selectMod = sel_act)
   } else {
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
                                title = paste("Active answers at a significant level of",thres_x1,"for the x-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_act)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant answers for the x-axis", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant answers for the x-axis", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -122,21 +122,21 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_act <- unique(c(sel_act_x2_p,sel_act_x2_n))
 
   if (is.null(sel_act)==TRUE){
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
                                title = paste("No active answers are significant at a significant level of",thres_x2),
                                axes=c(x1,x2), select="contrib 0 ", selectMod = sel_act)
   } else {
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
                                title = paste("Active answers at a significant level of",thres_x2,"for the y-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_act)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant answers for the y-axis", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant answers for the y-axis", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -151,21 +151,21 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_act <- unique(c(sel_act_x1_p,sel_act_x1_n,sel_act_x2_p,sel_act_x2_n))
 
   if (is.null(sel_act)==TRUE){
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "none",
                                title = paste("No active answers are significant at a significant level of",thres_x1,"and",thres_x2),
                                axes=c(x1,x2), select="contrib 0 ", selectMod = sel_act)
   } else {
-    yes_plot.resp4 <- plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
+    yes_plot.resp4 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("quali.sup","ind"),label = "var",
                                title = paste("Active answers at a significant level of",thres_x1,"for the x-axis, and",thres_x2,"for the y-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_act)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant answers", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant answers", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp4, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -176,21 +176,21 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_ill <- unique(c(sel_ill_x1_p,sel_ill_x1_n))
 
   if (is.null(sel_ill)==TRUE){
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
                                title = paste("No illustrative answers are significant at a level of",thres_x1),axes=c(x1,x2),
                                select="contrib 0 ")
   } else {
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
                                title = paste("Illustrative answers at a significant level of",thres_x1,"for the x-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_ill)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant illustrative answers for the x-axis", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant illustrative answers for the x-axis", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -201,21 +201,21 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_ill <- unique(c(sel_ill_x2_p,sel_ill_x2_n))
 
   if (is.null(sel_ill)==TRUE){
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
                                title = paste("No illustrative answers are significant at a level of",thres_x2),axes=c(x1,x2),
                                select="contrib 0 ")
   } else {
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
                                title = paste("Illustrative answers at a significant level of",thres_x2,"for the y-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_ill)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant illustrative answers for the y-axis", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant illustrative answers for the y-axis", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
 
 
@@ -230,27 +230,27 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_ill <- unique(c(sel_ill_x1_p,sel_ill_x1_n,sel_ill_x2_p,sel_ill_x2_n))
 
   if (is.null(sel_ill)==TRUE){
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "none",
                                title = paste("No illustrative answers are significant at a significant level of",thres_x1,"and",thres_x2),axes=c(x1,x2),
                                select="contrib 0 ")
   } else {
-    yes_plot.resp5 <- plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
+    yes_plot.resp5 <- FactoMineR::plot.MCA(res,choix="ind",invisible=c("var","ind"),label = "quali.sup",
                                title = paste("Illustrative answers at a significant level of",thres_x1,"for the x-axis, and",thres_x2,"for the y-axis"),axes=c(x1,x2),
                                select="contrib 0 ", selectMod = sel_ill)
   }
 
   #Slide: mix individuals and categories
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of the significant illustrative answers", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of the significant illustrative answers", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_plot.resp5, location = ph_location_type(type = "body"))
   yes_slide_num=yes_slide_num+1
-  essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+  essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
   #######################################
   #End of first section
 
   #Titre de section
-  essai <- add_slide(essai, layout = "Titre de section", master = "Intégral")
-  essai <- ph_with(essai, value = paste("Description of Dimension",x1), location = ph_location_type(type = "title"))
+  essai <- officer::add_slide(essai, layout = "Titre de section", master = "Intégral")
+  essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1), location = ph_location_type(type = "title"))
 
 
   #######################################
@@ -269,34 +269,34 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
     colnames(sel_mod_act) <- c("Category","Coord","Cos2","v.test")
 
     if (length(sel)<size_tab){
-      ft <- flextable(sel_mod_act)
-      ft <- autofit(ft)
-      essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-      essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
-      essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+      ft <- flextable::flextable(sel_mod_act)
+      ft <- flextable::autofit(ft)
+      essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+      essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
+      essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
       yes_slide_num=yes_slide_num+1
-      essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+      essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
 
     } else {
       n_slide=NULL
       n_slide <- dim(sel_mod_act)[1]%/%size_tab
       for (i in 0:(n_slide-1)){
-        ft <- flextable(sel_mod_act[(i*size_tab+1):(size_tab*(i+1)),])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_act[(i*size_tab+1):(size_tab*(i+1)),])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
       if (dim(sel_mod_act)[1]%%size_tab!=0){
-        ft <- flextable(sel_mod_act[(n_slide*size_tab+1):dim(sel_mod_act)[1],])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_act[(n_slide*size_tab+1):dim(sel_mod_act)[1],])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Active Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
     }
   }
@@ -316,31 +316,31 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
     colnames(sel_mod_sup) <- c("Category","Coord","Cos2","v.test")
 
     if (length(sel)<size_tab){
-      ft <- flextable(sel_mod_sup)
-      ft <- autofit(ft)
-      essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-      essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-      essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+      ft <- flextable::flextable(sel_mod_sup)
+      ft <- flextable::autofit(ft)
+      essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+      essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+      essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
     } else {
       n_slide=NULL
       n_slide <- dim(sel_mod_sup)[1]%/%size_tab
       for (i in 0:(n_slide-1)){
-        ft <- flextable(sel_mod_sup[(i*size_tab+1):(size_tab*(i+1)),])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_sup[(i*size_tab+1):(size_tab*(i+1)),])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
       if (dim(sel_mod_sup)[1]%%size_tab!=0){
-        ft <- flextable(sel_mod_sup[(n_slide*size_tab+1):dim(sel_mod_sup)[1],])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_sup[(n_slide*size_tab+1):dim(sel_mod_sup)[1],])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x1,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
     }
   }
@@ -348,8 +348,8 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   #End of second section
 
   #Titre de section
-  essai <- add_slide(essai, layout = "Titre de section", master = "Intégral")
-  essai <- ph_with(essai, value = paste("Description of Dimension",x2), location = ph_location_type(type = "title"))
+  essai <- officer::add_slide(essai, layout = "Titre de section", master = "Intégral")
+  essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2), location = ph_location_type(type = "title"))
 
   #######################################
   #Axis x2 Description by Active Variables
@@ -367,33 +367,33 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
     colnames(sel_mod_act) <- c("Category","Coord","Cos2","v.test")
 
     if (length(sel)<size_tab){
-      ft <- flextable(sel_mod_act)
-      ft <- autofit(ft)
-      essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-      essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
-      essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+      ft <- flextable::flextable(sel_mod_act)
+      ft <- flextable::autofit(ft)
+      essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+      essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
+      essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
       yes_slide_num=yes_slide_num+1
-      essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+      essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
     } else {
       n_slide=NULL
       n_slide <- dim(sel_mod_act)[1]%/%size_tab
       for (i in 0:(n_slide-1)){
-        ft <- flextable(sel_mod_act[(i*size_tab+1):(size_tab*(i+1)),])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_act[(i*size_tab+1):(size_tab*(i+1)),])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
       if (dim(sel_mod_act)[1]%%size_tab!=0){
-        ft <- flextable(sel_mod_act[(n_slide*size_tab+1):dim(sel_mod_act)[1],])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_act[(n_slide*size_tab+1):dim(sel_mod_act)[1],])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Active Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
     }
   }
@@ -413,33 +413,33 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
     colnames(sel_mod_sup) <- c("Category","Coord","Cos2","v.test")
 
     if (length(sel)<size_tab){
-      ft <- flextable(sel_mod_sup)
-      ft <- autofit(ft)
-      essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-      essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-      essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+      ft <- flextable::flextable(sel_mod_sup)
+      ft <- flextable::autofit(ft)
+      essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+      essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+      essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
       yes_slide_num=yes_slide_num+1
-      essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+      essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
     } else {
       n_slide=NULL
       n_slide <- dim(sel_mod_sup)[1]%/%size_tab
       for (i in 0:(n_slide-1)){
-        ft <- flextable(sel_mod_sup[(i*size_tab+1):(size_tab*(i+1)),])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_sup[(i*size_tab+1):(size_tab*(i+1)),])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
       if (dim(sel_mod_sup)[1]%%size_tab!=0){
-        ft <- flextable(sel_mod_sup[(n_slide*size_tab+1):dim(sel_mod_sup)[1],])
-        ft <- autofit(ft)
-        essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-        essai <- ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-        essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+        ft <- flextable::flextable(sel_mod_sup[(n_slide*size_tab+1):dim(sel_mod_sup)[1],])
+        ft <- flextable::autofit(ft)
+        essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+        essai <- officer::ph_with(essai, value = paste("Description of Dimension",x2,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+        essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
         yes_slide_num=yes_slide_num+1
-        essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+        essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
       }
     }
   }
@@ -447,27 +447,26 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   #End of third section
 
   #Titre de section
-  essai <- add_slide(essai, layout = "Titre de section", master = "Intégral")
-  essai <- ph_with(essai, value = "Hierarchical Clutering", location = ph_location_type(type = "title"))
+  essai <- officer::add_slide(essai, layout = "Titre de section", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Hierarchical Clutering", location = ph_location_type(type = "title"))
 
   ###################################################
   #    Classification                               #
   ###################################################
 
-  res.hcpc <- HCPC(res,nb.clust = -1, graph=F)
+  res.hcpc <- FactoMineR::HCPC(res,nb.clust = -1, graph=F)
   sel_act_desc <- rownames(res$var$eta2)
   data_act_class <- res.hcpc$data.clust[,c(sel_act_desc,"clust")]
-  res_inter <- MCA(data_act_class,quali.sup = dim(data_act_class)[2],graph = F)
-  yes_res.plot.hcpc <- plot.MCA(res_inter,habillage = dim(data_act_class)[2],label = "none",invisible = "var",
+  yes_res.plot.hcpc <- FactoMineR::plot.MCA(res_inter,habillage = dim(data_act_class)[2],label = "none",invisible = "var",
                                 title = "Representation of respondents according to hierarchical clustering")
 
   ##########################
-  essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-  essai <- ph_with(essai, value = "Representation of respondents according to hierarchical clustering", location = ph_location_type(type = "title"))
-  essai <- ph_with(essai, value = yes_res.plot.hcpc, location = ph_location_type(type = "body"))
+  essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+  essai <- officer::ph_with(essai, value = "Representation of respondents according to hierarchical clustering", location = ph_location_type(type = "title"))
+  essai <- officer::ph_with(essai, value = yes_res.plot.hcpc, location = ph_location_type(type = "body"))
   ##########################
 
-  rescat <- catdes(data_act_class,num.var=dim(data_act_class)[2],proba=proba)
+  rescat <- FactoMineR::catdes(data_act_class,num.var=dim(data_act_class)[2],proba=proba)
   #Test
   if (is.null(rescat$category)==FALSE){
     nlevels(data_act_class$clust)
@@ -478,33 +477,33 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
         desc_classe <- cbind(rownames(desc_classe),desc_classe)
         colnames(desc_classe) <- c("Category","Cla/Mod","Mod/Cla","Global","p.value","v.test")
         if (dim(desc_classe)[1]<size_tab){
-          ft <- flextable(desc_classe)
-          ft <- autofit(ft)
-          essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-          essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
-          essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+          ft <- flextable::flextable(desc_classe)
+          ft <- flextable::autofit(ft)
+          essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+          essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
+          essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
           yes_slide_num=yes_slide_num+1
-          essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+          essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
         } else {
           n_slide=NULL
           n_slide <- dim(desc_classe)[1]%/%size_tab
           for (i in 0:(n_slide-1)){
-            ft <- flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
-            ft <- autofit(ft)
-            essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-            essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
-            essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+            ft <- flextable::flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
+            ft <- flextable::autofit(ft)
+            essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+            essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
+            essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
             yes_slide_num=yes_slide_num+1
-            essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+            essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
           }
           if (dim(desc_classe)[1]%%size_tab!=0){
-            ft <- flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
-            ft <- autofit(ft)
-            essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-            essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
-            essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+            ft <- flextable::flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
+            ft <- flextable::autofit(ft)
+            essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+            essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Active Variables"), location = ph_location_type(type = "title"))
+            essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
             yes_slide_num=yes_slide_num+1
-            essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+            essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
           }
         }
       }
@@ -514,7 +513,7 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   sel_quali_desc <- rownames(res$quali.sup$eta2)
   if (is.null(sel_quali_desc)==FALSE){
     data_ill_class <- res.hcpc$data.clust[,c(sel_quali_desc,"clust")]
-    rescat <- catdes(data_ill_class,num.var=dim(data_ill_class)[2],proba=proba)
+    rescat <- FactoMineR::catdes(data_ill_class,num.var=dim(data_ill_class)[2],proba=proba)
     #Test
     if (is.null(rescat$category)==FALSE){
       nlevels(data_ill_class$clust)
@@ -525,33 +524,33 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
           desc_classe <- cbind(rownames(desc_classe),desc_classe)
           colnames(desc_classe) <- c("Category","Cla/Mod","Mod/Cla","Global","p.value","v.test")
           if (dim(desc_classe)[1]<size_tab){
-            ft <- flextable(desc_classe)
-            ft <- autofit(ft)
-            essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-            essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-            essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+            ft <- flextable::flextable(desc_classe)
+            ft <- flextable::autofit(ft)
+            essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+            essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+            essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
             yes_slide_num=yes_slide_num+1
-            essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+            essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
           } else {
             n_slide=NULL
             n_slide <- dim(desc_classe)[1]%/%size_tab
             for (i in 0:(n_slide-1)){
-              ft <- flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
-              ft <- autofit(ft)
-              essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-              essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-              essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+              ft <- flextable::flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
+              ft <- flextable::autofit(ft)
+              essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+              essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+              essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
               yes_slide_num=yes_slide_num+1
-              essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+              essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
             }
             if (dim(desc_classe)[1]%%size_tab!=0){
-              ft <- flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
-              ft <- autofit(ft)
-              essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-              essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-              essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+              ft <- flextable::flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
+              ft <- flextable::autofit(ft)
+              essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+              essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+              essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
               yes_slide_num=yes_slide_num+1
-              essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+              essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
             }
           }
         }
@@ -565,7 +564,7 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
 
   if (is.null(sel_quanti_desc)==FALSE){
     data_ill_class <- res.hcpc$data.clust[,c(sel_quanti_desc,"clust")]
-    rescat <- catdes(data_ill_class,num.var=dim(data_ill_class)[2],proba=proba)
+    rescat <- FactoMineR::catdes(data_ill_class,num.var=dim(data_ill_class)[2],proba=proba)
 
     if (is.null(rescat$quanti)==FALSE){
       nlevels(data_ill_class$clust)
@@ -576,39 +575,39 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
           desc_classe <- cbind(rownames(desc_classe),desc_classe)
           colnames(desc_classe) <- c("Category","v.test","Mean in category","Overall mean","sd in category","Overall sd","p.value")
           if (dim(desc_classe)[1]<size_tab){
-            ft <- flextable(desc_classe)
-            ft <- autofit(ft)
-            essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-            essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-            essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+            ft <- flextable::flextable(desc_classe)
+            ft <- flextable::autofit(ft)
+            essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+            essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+            essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
             yes_slide_num=yes_slide_num+1
-            essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+            essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
           } else {
             n_slide=NULL
             n_slide <- dim(desc_classe)[1]%/%size_tab
             for (i in 0:(n_slide-1)){
-              ft <- flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
-              ft <- autofit(ft)
-              essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-              essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-              essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+              ft <- flextable::flextable(desc_classe[(i*size_tab+1):(size_tab*(i+1)),])
+              ft <- flextable::autofit(ft)
+              essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+              essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+              essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
               yes_slide_num=yes_slide_num+1
-              essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+              essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
             }
             if (dim(desc_classe)[1]%%size_tab!=0){
-              ft <- flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
-              ft <- autofit(ft)
-              essai <- add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
-              essai <- ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
-              essai <- ph_with(essai, value = ft, location = ph_location_type(type = "body"))
+              ft <- flextable::flextable(desc_classe[(n_slide*size_tab+1):dim(desc_classe)[1],])
+              ft <- flextable::autofit(ft)
+              essai <- officer::add_slide(essai, layout = "Titre et texte vertical", master = "Intégral")
+              essai <- officer::ph_with(essai, value = paste("Description of Cluster",k,"with Illustrative Variables"), location = ph_location_type(type = "title"))
+              essai <- officer::ph_with(essai, value = ft, location = ph_location_type(type = "body"))
               yes_slide_num=yes_slide_num+1
-              essai <- ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
+              essai <- officer::ph_with(essai, value = yes_slide_num, location = ph_location_type(type = "sldNum"))
             }
           }
         }
       }
     }
   }
-  print(essai, target = "results.pptx")
+  officer::print.rpptx(essai, target = "results.pptx")
 
 }#End function
