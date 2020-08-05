@@ -8,7 +8,8 @@ Authors@R:
            email = "sebastien.le@agrocampus-ouets.fr",
            comment = c(ORCID = "0000-0001-8814-6714"))
 Description: Automatic reporting based on FactoMineR and
-    officer
+    officer. The input is an object of type MCA and the output is a pptx
+    file.
 License: GPL-3
 Imports: 
     FactoMineR,
