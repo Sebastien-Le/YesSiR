@@ -21,10 +21,10 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   #######################################
   #Init: first slide
   yes_slide_num=0
-  essai <- read_pptx(yes_temp)
-  essai <- remove_slide(essai)
+  essai <- officer::read_pptx(yes_temp)
+  essai <- officer::remove_slide(essai)
   essai <- officer::add_slide(essai, layout = "Diapositive de titre", master = "Integral")
-  essai <- officer::ph_with(essai, value = yes_study_name, location = ph_location_type(type = "ctrTitle"))
+  essai <- officer::ph_with(essai, value = yes_study_name, location = officer::ph_location_type(type = "ctrTitle"))
   #######################################
 
 
