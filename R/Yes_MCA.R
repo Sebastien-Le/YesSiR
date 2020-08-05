@@ -454,10 +454,10 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
   #    Classification                               #
   ###################################################
 
-  res.hcpc <- FactoMineR::HCPC(res,nb.clust = -1, graph=F)
+  res.hcpc <- FactoMineR::HCPC(res,nb.clust = -1, graph=FALSE)
   sel_act_desc <- rownames(res$var$eta2)
   data_act_class <- res.hcpc$data.clust[,c(sel_act_desc,"clust")]
-  res_inter <- FactoMineR::MCA(data_act_class,quali.sup = dim(data_act_class)[2],graph = F)
+  res_inter <- FactoMineR::MCA(data_act_class,quali.sup = dim(data_act_class)[2],graph = FALSE)
   yes_res.plot.hcpc <- FactoMineR::plot.MCA(res_inter,habillage = dim(data_act_class)[2],label = "none",invisible = "var",
                                 title = "Representation of respondents according to hierarchical clustering")
 
