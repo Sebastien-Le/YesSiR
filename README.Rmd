@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of YesSiR is to generate automatic report based on the FactoMineR and officer packages.
+The goal of YesSiR is to generate automatic report based on the FactoMineR and officer packages. Reports are issued from multivariate analyses such as MCA and PCA.
 
 ## Installation
 
