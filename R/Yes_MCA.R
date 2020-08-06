@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' #Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="YesSiR_template.pptx",proba = 0.05,x1=1,x2=2)
+#' #Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="Yes_Template.pptx",proba = 0.05,x1=1,x2=2)
 Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
 
   #######################################
