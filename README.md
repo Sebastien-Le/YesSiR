@@ -7,9 +7,10 @@
 
 <!-- badges: end -->
 
-The goal of YesSiR is to generate automatic report based on the
-FactoMineR and officer packages. Reports are issued from multivariate
-analyses such as MCA and PCA.
+The goal of the *YesSiR* package is to generate automatic report based
+on the *FactoMineR* and *officer* packages. Reports are issued from
+multivariate analyses such as MCA and PCA. To use the package you have
+to use the *.pptx* file included in the package.
 
 ## Installation
 
