@@ -1,27 +1,34 @@
 Package: YesSiR
-Title: Automatic reporting based on FactoMineR and officer
+Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "Sébastien",
-           family = "Lê",
+    person(given = "First",
+           family = "Last",
            role = c("aut", "cre"),
-           email = "sebastien.le@agrocampus-ouets.fr",
-           comment = c(ORCID = "0000-0001-8814-6714"))
-Description: Automatic reporting based on FactoMineR and
-    officer. The input is an object of type MCA and the output is a pptx
-    file.
+           email = "first.last@example.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: What the package does (one paragraph).
 License: GPL-3
-URL: https://github.com/Sebastien-Le/YesSiR
-BugReports: https://github.com/Sebastien-Le/YesSiR/issues
+Depends: 
+    R (>= 2.10)
 Imports: 
+    dplyr,
     FactoMineR,
     flextable,
-    officer
+    ggplot2,
+    ggwordcloud,
+    graphics,
+    grDevices,
+    officer,
+    openxlsx,
+    plotrix,
+    utils
+Suggests: 
+    SensoMineR,
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Suggests: 
-    testthat,
-    spelling
-Language: en-US
+VignetteBuilder: knitr
