@@ -41,7 +41,7 @@ PowerPoint reporting of a textual analysis
 \examples{
 \dontrun{
 data(beard)
-res.text <- textual(beard,contingence.by = 1,num.text = 3)
+res.text <- FactoMineR::textual(beard,contingence.by = 1,num.text = 3)
 # Create the PowerPoint in the current working directory
 Yes_textual(res.text)
 }
