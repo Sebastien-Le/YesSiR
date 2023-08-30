@@ -1,4 +1,4 @@
-#' PowerPont reporting of a PCA
+#' PowerPoint reporting of a PCA
 #'
 #' @param res a PCA object
 #' @param yes_study_name title displayed on the first slide
