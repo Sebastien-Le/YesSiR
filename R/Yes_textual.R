@@ -163,7 +163,7 @@ Yes_textual <- function(res, yes_study_name = "Textual analysis", path=getwd(), 
                         ggplot2::scale_size_area(max_size = 10, limits=c(min(yes_desc$v.test),max(yes_desc$v.test))) +
                         ggplot2::theme_minimal() +
                         ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos, limits=c(min(yes_desc$v.test),max(yes_desc$v.test))) +
-                        ggplot2::guides(size = FALSE))
+                        ggplot2::guides(size = "none"))
 
       if (dim(yes_desc)[1]<=size_tab) {
         ft <- flextable::flextable(yes_desc)
