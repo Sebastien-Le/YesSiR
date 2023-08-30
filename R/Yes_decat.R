@@ -102,18 +102,18 @@ Yes_decat <- function(res, yes_study_name = "Quantitative description of product
       }
     }
     # All the wordclouds on the same page
-    yes_wordclouds <- (ggplot2::ggplot(resT, ggplot2::aes(label = descriptor, size=Vtest, colour=Vtest)) +
-                         ggwordcloud::geom_text_wordcloud(show.legend = TRUE) +
-                         ggplot2::scale_size_area(max_size = 10) +
-                         ggplot2::theme_minimal() +
-                         ggplot2::facet_wrap(~product) +
-                         ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos) +
-                         ggplot2::guides(size="none"))
-    essai <- officer::add_slide(essai, layout = "Image avec legende", master = "YesSiR")
-    essai <- officer::ph_with(essai, value = "All sensory profiles illustrated with wordclouds", location = officer::ph_location_type(type = "title"))
-    essai <- officer::ph_with(essai, value = yes_wordclouds, location = officer::ph_location_type(type = "pic"))
-    yes_slide_num <- yes_slide_num+1
-    essai <- officer::ph_with(essai, value = yes_slide_num, location = officer::ph_location_type(type = "sldNum"))
+    #yes_wordclouds <- (ggplot2::ggplot(resT, ggplot2::aes(label = descriptor, size=Vtest, colour=Vtest)) +
+    #                     ggwordcloud::geom_text_wordcloud(show.legend = TRUE) +
+    #                     ggplot2::scale_size_area(max_size = 10) +
+    #                     ggplot2::theme_minimal() +
+    #                     ggplot2::facet_wrap(~product) +
+    #                     ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos) +
+    #                     ggplot2::guides(size="none"))
+    #essai <- officer::add_slide(essai, layout = "Image avec legende", master = "YesSiR")
+    #essai <- officer::ph_with(essai, value = "All sensory profiles illustrated with wordclouds", location = officer::ph_location_type(type = "title"))
+    #essai <- officer::ph_with(essai, value = yes_wordclouds, location = officer::ph_location_type(type = "pic"))
+    #yes_slide_num <- yes_slide_num+1
+    #essai <- officer::ph_with(essai, value = yes_slide_num, location = officer::ph_location_type(type = "sldNum"))
   }
   #######################################
 
