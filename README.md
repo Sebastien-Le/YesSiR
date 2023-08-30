@@ -44,22 +44,29 @@ You can install the released version of YesSiR from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+# First install and load the devtools package
+install.packages("devtools")
+library(devtools)
+
+# Then install and load the YesSiR package
 devtools::install_github("Sebastien-Le/YesSiR")
+library(YesSiR)
 ```
 
 ## Output
 
-Let’s have a look at how it works with a PCA.
+Let’s have a look at how it works with a PCA:
 
 ``` r
-# Generation of the results you want to put in your PowerPoint
+# First install and load the FactoMineR package
+install.packages("FactoMineR")
 library(FactoMineR)
+
+# Then generate the results you want to put in your PowerPoint
 data(decathlon)
 res.pca <- FactoMineR::PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
 
-# Creation of the PowerPoint in the working directory
-library(YesSiR)
+# Finally create the PowerPoint in the working directory with the Yes_PCA() function
 Yes_PCA(res.pca)
 ```
 
@@ -69,16 +76,18 @@ created, you can download it
 (small icon on your right).
 
 Now, let’s have a look at how it works with sensory data and in
-particular with QDA data.
+particular with QDA data:
 
 ``` r
-# Generation of the results you want to put in your PowerPoint
+# First install and load the SensoMineR package
+install.packages("SensoMineR")
 library(SensoMineR)
+
+# Then generate the results you want to put in your PowerPoint
 data("sensochoc")
 res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
 
-# Creation of the PowerPoint in the working directory
-library(YesSiR)
+# Finally create the PowerPoint in the working directory with the Yes_decat() function
 Yes_decat(res.decat)
 ```
 
