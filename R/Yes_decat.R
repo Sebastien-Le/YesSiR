@@ -57,7 +57,7 @@ Yes_decat <- function(res, yes_study_name = "Quantitative description of product
                             ggplot2::scale_size_area(max_size = 15, limits=c(min(resT$Vtest),max(resT$Vtest))) +
                             ggplot2::theme_minimal() +
                             ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos, limits=c(min(resT$Vtest),max(resT$Vtest))) +
-                            ggplot2::guides(size = FALSE))
+                            ggplot2::guides(size = "none"))
         if (dim(yes_resT)[1]<=size_tab){
           ft <- flextable::flextable(yes_resT)
           ft <- flextable::colformat_double(ft,j=-1,digits = 3)
@@ -108,7 +108,7 @@ Yes_decat <- function(res, yes_study_name = "Quantitative description of product
                          ggplot2::theme_minimal() +
                          ggplot2::facet_wrap(~product) +
                          ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos) +
-                         ggplot2::guides(size=FALSE))
+                         ggplot2::guides(size="none"))
     essai <- officer::add_slide(essai, layout = "Image avec legende", master = "YesSiR")
     essai <- officer::ph_with(essai, value = "All sensory profiles illustrated with wordclouds", location = officer::ph_location_type(type = "title"))
     essai <- officer::ph_with(essai, value = yes_wordclouds, location = officer::ph_location_type(type = "pic"))

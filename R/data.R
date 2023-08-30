@@ -7,7 +7,7 @@
 #' @name sensochoc
 #' @usage data(sensochoc)
 #' @format A data frame with 348 rows and 19 columns: 5 qualitative variables (Panelist, Session, Form, Rank, Product) and 14 sensory descriptors.
-#' @source Applied mathematics department, AGROCAMPUS OUEST
+#' @source Applied mathematics department, L'Institut Agro Rennes-Angers
 "sensochoc"
 
 #' tea (data)
@@ -19,6 +19,7 @@
 #' @name tea
 #' @usage data(tea)
 #' @format A data frame with 300 rows and 36 columns. Rows represent the individuals, columns represent the different questions. The first 18 questions are active ones, the 19th is a supplementary quantitative variable (the age) and the last variables are supplementary categorical variables.
+#' @source Applied mathematics department, L'Institut Agro Rennes-Angers
 "tea"
 
 #' Beards description
@@ -30,4 +31,5 @@
 #' @name beard
 #' @usage data(beard)
 #' @format A data frame with 494 rows and 3 columns : beard, description (in french), description (in english)
+#' @source Applied mathematics department, L'Institut Agro Rennes-Angers
 "beard"
