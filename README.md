@@ -50,6 +50,8 @@ devtools::install_github("Sebastien-Le/YesSiR")
 
 ## Output
 
+Let’s have a look at how it works with a PCA.
+
 ``` r
 # Generation of the results you want to put in your PowerPoint
 library(FactoMineR)
@@ -64,4 +66,23 @@ Yes_PCA(res.pca)
 If you want to have a look at the PowerPoint presentation that has been
 created, you can download it
 [here](https://github.com/Sebastien-Le/YesSiR/blob/master/PCA_results.pptx)
+(small icon on your right).
+
+Now, let’s have a look at how it works with sensory data and in
+particular with QDA data.
+
+``` r
+# Generation of the results you want to put in your PowerPoint
+library(SensoMineR)
+data("sensochoc")
+res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+
+# Creation of the PowerPoint in the working directory
+library(YesSiR)
+Yes_decat(res.decat)
+```
+
+If you want to have a look at the PowerPoint presentation that has been
+created, you can download it
+[here](https://github.com/Sebastien-Le/YesSiR/blob/master/decat_results.pptx)
 (small icon on your right).
