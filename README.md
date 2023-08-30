@@ -60,3 +60,8 @@ res.pca <- FactoMineR::PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
 library(YesSiR)
 Yes_PCA(res.pca)
 ```
+
+If you want to have a look at the PowerPoint presentation that has been
+created, you can download it
+[here](https://github.com/Sebastien-Le/YesSiR/blob/master/PCA_results.pptx)
+(small icon on your right).
