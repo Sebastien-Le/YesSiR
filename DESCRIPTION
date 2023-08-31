@@ -10,18 +10,18 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: GPL-3
 Depends: 
-    R (>= 3.5.0)
+    R (>= 3.5.0),
+    flextable,
+    ggwordcloud,
+    officer,
+    plotrix
 Imports: 
     dplyr,
     FactoMineR,
-    flextable,
     ggplot2,
-    ggwordcloud,
     graphics,
     grDevices,
-    officer,
     openxlsx,
-    plotrix,
     utils
 Suggests: 
     SensoMineR,
